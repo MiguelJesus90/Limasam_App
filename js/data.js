@@ -860,7 +860,7 @@ const TOPICS = [
       },
       {
         question: "¿Qué operario continúa barriendo mientras el conductor y el Operario C van a descargar?",
-        options: ["Solo el Operario A", "Solo el Operario B", "Los operarios A y B", "Nadie, todos esperan"],
+        options: ["Solo el Operario A", "Solo el Operario B", "Los operarios A y B", "Solo el conductor"],
         correct: 2,
         explanation: "Mientras se descarga, los operarios A y B continúan avanzando el trabajo de barrido."
       },
@@ -985,9 +985,9 @@ const TOPICS = [
         explanation: "Se debe mantener contacto visual con el equipo durante la maniobra del peine hidráulico."
       },
       {
-        question: "¿Quién avisa al conductor cuando la tolva está llena?",
-        options: ["El Coordinador/a", "El Operario A", "El operario que está recogiendo", "El conductor se da cuenta solo"],
-        correct: 2,
+        question: "¿Qué se debe hacer cuando la tolva del vehículo está llena durante el barrido?",
+        options: ["Seguir empujando residuos hasta el final", "Avisar al conductor/a para que detenga el vehículo y proceda a la descarga", "Llamar al Coordinador/a para que envíe otro vehículo", "Esperar a que se vacíe sola"],
+        correct: 1,
         explanation: "Cuando la tolva esté llena, se avisa al conductor/a para que detenga el vehículo."
       },
       {
@@ -1611,8 +1611,8 @@ const TOPICS = [
         explanation: "Si las manchas no salen con agua: aplicar detergente en polvo SOBRE PAVIMENTO YA MOJADO y frotar con cepillo."
       },
       {
-        question: "¿Por qué el detergente en polvo NO se puede aplicar en seco?",
-        options: ["Porque mancha el pavimento", "Porque no funciona en seco", "Porque daña la manguera", "Porque resbala el operario"],
+        question: "¿Qué ocurre si se aplica detergente en polvo sobre pavimento seco?",
+        options: ["Mancha el pavimento permanentemente", "No tiene efecto limpiador", "Daña la manguera", "Hace resbalar al operario"],
         correct: 1,
         explanation: "El detergente NO funciona en seco. Se aplica sobre pavimento ya mojado."
       },
@@ -1678,7 +1678,7 @@ const TOPICS = [
       },
       {
         question: "¿Por qué se empieza a recoger la señalización por la zona más seca?",
-        options: ["Porque es más visible", "Porque la zona más seca es la que se colocó primero y ya se puede transitar", "Porque así lo indica el Coordinador/a", "Porque es más fácil de ver"],
+        options: ["Porque es más visible", "Porque fue la primera en colocarse y es la zona más seca", "Porque así lo indica el Coordinador/a", "Porque es más fácil de ver"],
         correct: 1,
         explanation: "Recoger señalización empezando por la colocada primero (zona más seca)."
       },
@@ -1945,7 +1945,7 @@ const TOPICS = [
       },
       {
         question: "¿Qué diferencia fundamental existe entre la conexión del sistema de alta presión y el de baja presión?",
-        options: ["Alta presión se conecta a la red de riego; baja presión al depósito", "Alta presión: manguera a toma de carga y depósito; baja presión: mangueras de baldeo y entrada de agua al motor y red de riego", "Ambos se conectan de la misma forma", "Alta presión no necesita mangueras"],
+        options: ["Alta presión a red de riego; baja presión a depósito", "Alta presión: toma de carga y depósito; baja presión: mangueras al motor y red de riego", "Ambos se conectan de la misma forma", "Alta presión no necesita mangueras"],
         correct: 1,
         explanation: "ALTA PRESIÓN: conectar manguera a toma de carga y al depósito. BAJA PRESIÓN: conectar mangueras de baldeo y entrada de agua al motor auxiliar y luego a la red de riego."
       },
@@ -2204,10 +2204,10 @@ const TOPICS = [
         explanation: "Herramientas adicionales si van en vehículo: detergente en polvo."
       },
       {
-        question: "¿Cómo se debe subir o bajar de la cabina del vehículo cisterna en la Fase 1?",
-        options: ["De espaldas, usando los estribos", "Siempre de cara a ella, usando las agarraderas", "De lateral, apoyándose en la puerta", "De cara, usando los pedales como apoyo"],
-        correct: 1,
-        explanation: "Al subir/bajar de la cabina: siempre de cara a ella, usando las agarraderas."
+        question: "¿Qué se debe hacer en la Fase 5 al terminar el tramo?",
+        options: ["Apagar el motor y cerrar la llave del agua", "Recoger primero la señalización y después el material", "Dejar la manguera conectada para el siguiente tramo", "Mover el vehículo inmediatamente"],
+        correct: 0,
+        explanation: "Al terminar el tramo: el baldeador avisa al conductor/a, que apaga el motor y cierra la llave."
       },
       {
         question: "En la Fase 2, ¿qué tareas realiza el operario que va en primer lugar?",
@@ -2276,8 +2276,8 @@ const TOPICS = [
         explanation: "El conductor/a conecta la toma de fuerza/motor auxiliar y, cuando el baldeador lo indique, abre la llave de paso del agua."
       },
       {
-        question: "¿Cuál es el primer paso del orden de trabajo en la Fase 5?",
-        options: ["El auxiliar aplica detergente en polvo sobre las manchas", "El baldeador aplica el agua a presión detrás del auxiliar", "El baldeador aplica una capa de agua sobre una zona no muy extensa", "El conductor/a conecta la toma de fuerza"],
+        question: "¿Cuál es el primer paso del orden de trabajo numerado en la Fase 5 (una vez conectada la toma de fuerza)?",
+        options: ["El auxiliar aplica detergente en polvo sobre las manchas", "El baldeador aplica el agua a presión detrás del auxiliar", "El baldeador aplica una capa de agua sobre una zona no muy extensa", "El conductor/a apaga el motor auxiliar"],
         correct: 2,
         explanation: "ORDEN DE TRABAJO: (1) Baldeador aplica una capa de agua sobre una zona no muy extensa."
       },
@@ -2301,7 +2301,7 @@ const TOPICS = [
       },
       {
         question: "¿Qué hace el auxiliar con la espuerta cuando está llena?",
-        options: ["La anuda y la deposita en el contenedor", "La vacía directamente en el contenedor", "La vuelca en una bolsa", "La deja en el suelo hasta terminar el tramo"],
+        options: ["La vacía directamente en el contenedor más cercano", "La lleva al vehículo cisterna", "La vuelca en una bolsa", "La deja en el suelo hasta terminar el tramo"],
         correct: 2,
         explanation: "Espuerta llena: volcar en bolsa."
       },
@@ -2515,16 +2515,16 @@ const TOPICS = [
         explanation: "El método es genérico; el Coordinador/a indica las instrucciones concretas para cada caso."
       },
       {
-        question: "¿Cuántos operarios/as componen habitualmente el grupo de limpieza de un mercado?",
-        options: ["1 operario/a", "2 operarios/as por mercado", "3 operarios/as", "4 operarios/as"],
-        correct: 1,
-        explanation: "Grupos habituales: 2 operarios/as por mercado (puede ser 1 o más según el tamaño)."
+        question: "¿Cuántas fases tiene el método de trabajo de limpieza de mercados?",
+        options: ["3", "4", "5", "6"],
+        correct: 2,
+        explanation: "El método de trabajo de limpieza de mercados tiene 5 fases: Traslado al mercado, Después de la llegada de proveedores, Durante la actividad comercial, Retirada de cajas/fregado/baldeo, y Comunicación al finalizar."
       },
       {
         question: "¿Cuál de las siguientes NO es una herramienta propia de la limpieza de mercados?",
-        options: ["Escoba", "Salabar", "Fregadora mecánica", "Llave de papeleras"],
+        options: ["Escoba", "Chapulina", "Fregadora mecánica", "Llave de papeleras"],
         correct: 1,
-        explanation: "El salabar es herramienta de limpieza de playas. Las herramientas de mercados incluyen escoba, carretilla, cubo, fregadora mecánica, llave de papeleras, etc."
+        explanation: "La chapulina es herramienta de barrido/desbroce, no de limpieza de mercados. Las herramientas de mercados incluyen escoba, carretilla, cubo, fregadora mecánica, llave de papeleras, etc."
       },
       {
         question: "¿Dónde se encuentra el centro de trabajo del operario/a de limpieza de mercados?",
@@ -2874,7 +2874,7 @@ const TOPICS = [
       },
       {
         question: "¿En qué mano se lleva la bolsa de residuos durante el cribado con salabar?",
-        options: ["En la otra mano (la no hábil)", "En la misma mano que el salabar", "Colgada del hombro", "En el suelo junto al operario"],
+        options: ["En la otra mano", "En la misma mano que el salabar", "Colgada del hombro", "En el suelo junto al operario"],
         correct: 0,
         explanation: "El residuo se deposita en la bolsa que se lleva en la otra mano, mientras el salabar se coge con la mano hábil."
       },
@@ -2970,9 +2970,9 @@ const TOPICS = [
       },
       {
         question: "¿De dónde se saca la chapulina durante el trabajo?",
-        options: ["Del bolsillo lateral del pantalón de trabajo", "Del centro de trabajo", "Del vehículo auxiliar", "De la bolsa de residuos"],
+        options: ["Del bolsillo lateral", "Del centro de trabajo", "Del vehículo auxiliar", "De la bolsa de residuos"],
         correct: 0,
-        explanation: "La chapulina se lleva en el bolsillo lateral del pantalón de trabajo."
+        explanation: "La chapulina se lleva en el bolsillo lateral."
       },
       {
         question: "¿En qué zona se utilizan las chapulinas para eliminar matas?",
@@ -3394,10 +3394,10 @@ const TOPICS = [
         explanation: "Se requiere casco de protección puesto al subirse a la estribera trasera."
       },
       {
-        question: "¿Qué se debe hacer con las estriberas propias del vehículo recolector antes de ir a descargar?",
-        options: ["Desplegarlas para mayor estabilidad", "Replegarlas", "No es necesario tocarlas", "Retirarlas completamente"],
+        question: "¿Qué se debe hacer con las bolsas de las papeleras que NO están fuera del recipiente?",
+        options: ["Esperar a que otro operario las saque", "Retirarlas de los recipientes, anudarlas y reponer con bolsas nuevas", "Solo reponer bolsas nuevas sin retirar las viejas", "Dejarlas para el operario de limpieza de playas"],
         correct: 1,
-        explanation: "Es OBLIGATORIO replegar las estriberas antes de subirse a la cabina para ir a descargar."
+        explanation: "Retirar las bolsas de los recipientes (si no estuviesen fuera), anudarlas y reponer con bolsas nuevas."
       },
       {
         question: "¿Qué función cumple el cuadro de mandos en el servicio de recogida de papeleras en playas?",
@@ -3412,10 +3412,10 @@ const TOPICS = [
         explanation: "La descarga de papeleras de playas NO se realiza en el Centro Ambiental sino en nodrizas o cajas de gran volumen."
       },
       {
-        question: "¿Qué debe hacer el operario/a si necesita subir a la cabina después de compactar?",
-        options: ["Subir directamente desde la estribera", "Replegar las estriberas y luego subir de cara a la cabina usando escalones y agarraderas", "Subir por el lateral del vehículo", "Esperar a que el conductor/a le ayude"],
+        question: "¿Qué se debe hacer al terminar la descarga en el nodriza?",
+        options: ["Esperar instrucciones del conductor/a del nodriza", "Recoger residuos caídos con tablillas y depositarlos en la tolva del nodriza", "Volver al vehículo directamente", "Comunicar al Coordinador/a la descarga completada"],
         correct: 1,
-        explanation: "Es OBLIGATORIO replegar las estriberas antes de subirse a la cabina, y siempre de cara a ella usando escalones y agarraderas."
+        explanation: "Tras la descarga: recoger con tablillas los residuos caídos al suelo y depositarlos en la tolva del nodriza."
       },
       {
         question: "¿Qué secuencia es correcta para la operación con placa de descarga del nodriza?",
@@ -3785,7 +3785,7 @@ const TOPICS = [
       },
       {
         question: "¿Con qué caja sale el vehículo multibasculante para la recogida de voluminosos?",
-        options: ["Con una caja llena", "Con una caja vacía (excepto autocompactadores — sale sin caja)", "Con dos cajas", "Con la caja de 18 m³ siempre"],
+        options: ["Con una caja llena", "Con una caja vacía (autocompactadores: sin caja)", "Con dos cajas", "Con la caja de 18 m³ siempre"],
         correct: 1,
         explanation: "El vehículo empieza con una caja vacía para ir cambiando las cajas a vaciar (excepto autocompactadores — sale sin caja)."
       },
@@ -3862,7 +3862,7 @@ const TOPICS = [
         explanation: "El animal es asegurado con eslingas/cable de acero antes de su elevación a la caja."
       },
       {
-        question: "¿Solo se monta la recogida de animales muertos para qué tipo de animales?",
+        question: "¿Para qué tipo de animales se monta específicamente el servicio de recogida de animales muertos?",
         options: ["Animales pequeños", "Animales grandes (normalmente equinos)", "Solo perros", "Solo gatos"],
         correct: 1,
         explanation: "Solo se monta cuando hay notificaciones para animales grandes (normalmente equinos)."
