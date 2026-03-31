@@ -108,6 +108,18 @@ class App {
       });
     });
 
+    this.modalOverlay.addEventListener('click', (e) => {
+      if (e.target.dataset.action === 'modal-close') {
+        this.closeModal();
+      } else if (e.target.dataset.action === 'reset-progress') {
+        this.confirmReset();
+      } else if (e.target.closest('[data-action="modal-close"]')) {
+        this.closeModal();
+      } else if (e.target.closest('[data-action="reset-progress"]')) {
+        this.confirmReset();
+      }
+    });
+
     this.mainContent.addEventListener('click', (e) => {
       const btn = e.target.closest('button');
       if (!btn) return;
