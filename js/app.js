@@ -440,11 +440,25 @@ class App {
   startGlobalQuiz() {
     const allQuestions = TOPICS.flatMap(t => t.questions.map(q => ({ ...q, topicId: t.id, topicTitle: t.title })));
     const shuffled = quizEngine.shuffle(allQuestions);
-    const selected = shuffled.slice(0, 50);
+    const selected = shuffled.slice(0, 30);
 
-    quizEngine.start(selected, 'global');
+    quizEngine.start(selected, 'global', 2700);
     this.switchView('quiz');
     this.renderQuestion();
+    quizEngine.startTimer(() => this.finishQuizEarly());
+  }
+
+  finishQuizEarly() {
+    const currentQ = quizEngine.getCurrentQuestion();
+    if (currentQ) {
+      while (quizEngine.getCurrentQuestion()) {
+        if (!this.answers[quizEngine.currentIndex]) {
+          quizEngine.submitAnswer(quizEngine.currentIndex, -1);
+        }
+        quizEngine.nextQuestion();
+      }
+    }
+    this.showResults();
   }
 
   startReviewQuiz() {
@@ -473,6 +487,7 @@ class App {
     this.quizContainer.innerHTML = `
       <div class="quiz-header">
         <h2>${question.topicId === 'global' ? 'Cuestionario Global' : question.topicId === 'review' ? 'Repaso de Errores' : `Tema ${TOPICS.find(t => t.id === question.topicId)?.number || ''} — ${TOPICS.find(t => t.id === question.topicId)?.title || ''}`}</h2>
+        ${question.topicId === 'global' ? '<div class="quiz-timer"><span id="quizTimer">45:00</span></div>' : ''}
         <div class="quiz-progress">
           <div class="quiz-progress-bar">
             <div class="quiz-progress-fill" style="width: ${progress}%"></div>

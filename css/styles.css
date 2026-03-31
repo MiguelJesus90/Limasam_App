@@ -693,6 +693,29 @@ body {
   margin-bottom: 8px;
 }
 
+.quiz-timer {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--color-text);
+  text-align: center;
+  margin-top: 4px;
+}
+
+.quiz-timer .warning {
+  color: var(--color-warning);
+}
+
+.quiz-timer .danger {
+  color: var(--color-danger);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
 .quiz-progress {
   display: flex;
   align-items: center;
