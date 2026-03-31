@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIMASAM 2025 — Estudio Interactivo</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Menú">☰</button>
+        <h1 class="header-title">LIMASAM 2025</h1>
+        <span class="header-subtitle">Manual del Operario de Servicio</span>
+      </div>
+      <div class="header-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">🌙</button>
+        <div class="global-progress" id="globalProgress">
+          <span class="progress-label">Progreso global</span>
+          <div class="progress-bar-mini">
+            <div class="progress-fill-mini" id="globalProgressFill"></div>
+          </div>
+          <span class="progress-text" id="globalProgressText">0/11</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-view="dashboard">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label">Dashboard</span>
+        </button>
+        <div class="nav-divider">
+          <span>TEMAS</span>
+        </div>
+        <div id="topicNav"></div>
+        <div class="nav-divider">
+          <span>EVALUACIÓN</span>
+        </div>
+        <button class="nav-item" data-view="quiz-global" id="globalQuizBtn">
+          <span class="nav-icon">🌐</span>
+          <span class="nav-label">Cuestionario Global</span>
+          <span class="nav-badge locked" id="globalBadge">🔒</span>
+        </button>
+        <button class="nav-item" data-view="review">
+          <span class="nav-icon">🔄</span>
+          <span class="nav-label">Repasar Errores</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="mainContent">
+      <!-- Dashboard View -->
+      <div class="view active" id="view-dashboard">
+        <div class="dashboard-header">
+          <h2>Dashboard de Estudio</h2>
+          <p>Tu progreso en el temario LIMASAM 2025</p>
+        </div>
+        <div class="stats-grid" id="statsGrid"></div>
+        <div class="topics-overview" id="topicsOverview"></div>
+      </div>
+
+      <!-- Topic Content View -->
+      <div class="view" id="view-topic">
+        <div class="topic-container" id="topicContainer"></div>
+      </div>
+
+      <!-- Quiz View -->
+      <div class="view" id="view-quiz">
+        <div class="quiz-container" id="quizContainer"></div>
+      </div>
+
+      <!-- Quiz Results View -->
+      <div class="view" id="view-results">
+        <div class="results-container" id="resultsContainer"></div>
+      </div>
+
+      <!-- Review View -->
+      <div class="view" id="view-review">
+        <div class="review-container" id="reviewContainer"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
