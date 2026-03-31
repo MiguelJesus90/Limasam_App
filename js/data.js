@@ -319,9 +319,9 @@ const TOPICS = [
         explanation: "Ordenar enseres en zona de contenedores para no entorpecer a ciudadanos ni tráfico."
       },
       {
-        question: "¿Qué se barre debajo de los bancos públicos?",
-        options: ["Solo con el escobillo", "Solo con la escoba", "Se debe barrer (con la escoba)", "No se barre esa zona"],
-        correct: 2,
+        question: "¿Qué se debe hacer debajo de los bancos públicos durante el barrido?",
+        options: ["Barrer con la escoba", "Usar el escobillo para barrer", "No se limpia esa zona", "Solo recoger con las tablillas"],
+        correct: 0,
         explanation: "Se debe barrer debajo de los bancos públicos."
       },
       {
