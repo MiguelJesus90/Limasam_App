@@ -69,6 +69,14 @@
   background: #1a2a3a;
 }
 
+[data-theme="dark"] .option-label:hover {
+  background: #1e3050;
+}
+
+[data-theme="dark"] .option-label.selected {
+  background: #1e3050;
+}
+
 /* Reset */
 *, *::before, *::after {
   margin: 0;
