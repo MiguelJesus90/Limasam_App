@@ -343,8 +343,8 @@ const TOPICS = [
         explanation: "Se deben eliminar residuos vegetales como hojas, semillas, frutos caídos, tierra y excrementos."
       },
       {
-        question: "¿Qué se debe hacer con el cubo del carrito portabolsas cuando está lleno?",
-        options: ["Vaciarlo directamente en el contenedor", "Puede retirarse manualmente para almacenar residuos", "Cambiarlo por otro cubo", "Comunicar al Coordinador/a"],
+        question: "¿Cómo se almacenan los residuos en el carrito portabolsas?",
+        options: ["En bolsas sueltas sobre la acera", "En el cubo con bolsa del carrito, que puede retirarse manualmente", "Directamente en los contenedores", "En la espuerta hasta llenarla"],
         correct: 1,
         explanation: "Se almacenan residuos siempre en el cubo con bolsa del carrito (puede retirarse el cubo manualmente)."
       },
@@ -503,7 +503,7 @@ const TOPICS = [
       },
       {
         question: "¿Qué se debe usar en descensos para reducir consumo y desgaste de frenos?",
-        options: ["El freno de motor exclusivamente", "La retención del motor", "El freno de mano progresivamente", "Punto muerto con retención"],
+        options: ["Frenar continuamente con el pedal", "La retención del motor", "Poner punto muerto", "El freno de mano progresivamente"],
         correct: 1,
         explanation: "En descensos, usar la retención del motor para reducir consumo y desgaste de frenos."
       },
@@ -646,10 +646,10 @@ const TOPICS = [
         explanation: "Suele prescindir de carrito portabolsas, escobillo y recogedor (no es norma general)."
       },
       {
-        question: "¿Es norma general prescindir de carrito portabolsas, escobillo y recogedor en el barrido con vehículo auxiliar?",
-        options: ["Sí, siempre", "No, no es norma general", "Solo en verano", "Solo en zonas urbanas"],
+        question: "¿Qué requisito de conducción es obligatorio para el barrido con vehículo auxiliar?",
+        options: ["Carnet de conducir tipo A", "Carnet de conducir tipo B en vigor", "Carnet de conducir tipo C", "No se requiere carnet"],
         correct: 1,
-        explanation: "Suele prescindir de carrito portabolsas, escobillo y recogedor — no es norma general."
+        explanation: "Requiere carnet de conducir tipo B en vigor — sin él, prohibido conducir el vehículo."
       },
       {
         question: "¿En qué zona se desarrolla normalmente el barrido con vehículo auxiliar?",
@@ -688,16 +688,16 @@ const TOPICS = [
         explanation: "Seguir las instrucciones de las fases 4 y 5 del barrido manual individual."
       },
       {
-        question: "¿Qué se debe hacer al subir o bajar del vehículo auxiliar?",
-        options: ["Saltar directamente al suelo", "Usar los escalones y agarraderas de cara al vehículo", "Bajar de espaldas", "No importa la forma"],
+        question: "¿Qué se debe hacer con los residuos almacenados en la caja del vehículo auxiliar?",
+        options: ["Dejarlos al descubierto para facilitar el acceso", "Cubrirlos siempre con la lona o toldo", "Regarlos con agua para compactarlos", "Comunicar al Coordinador/a antes de cubrirlos"],
         correct: 1,
-        explanation: "Se aplican las mismas normas de seguridad: de cara al vehículo, usando escalones y agarraderas."
+        explanation: "Los residuos almacenados en la caja DEBEN cubrirse siempre con la lona o toldo."
       },
       {
-        question: "¿Qué se debe hacer con los residuos que no caben en la caja del vehículo?",
-        options: ["Dejarlos junto al contenedor", "Comunicarlo al Coordinador/a", "Dividirlos en trozos más pequeños", "Apilarlos fuera de la caja"],
+        question: "¿Qué se debe hacer al aparcar el vehículo auxiliar en una cuesta?",
+        options: ["Solo poner el freno de mano", "Freno de mano + marcha puesta + rueda trabada contra el bordillo", "Solo poner una marcha", "Freno de mano + punto muerto"],
         correct: 1,
-        explanation: "Si el voluminoso es demasiado grande, se comunica al Coordinador/a."
+        explanation: "Al aparcar: freno de mano + marcha puesta. En cuesta, además rueda trabada contra bordillo."
       },
       {
         question: "¿Qué se debe verificar en la inspección exterior del vehículo?",
@@ -865,22 +865,10 @@ const TOPICS = [
         explanation: "Mientras se descarga, los operarios A y B continúan avanzando el trabajo de barrido."
       },
       {
-        question: "¿Qué color identifica al Operario A?",
-        options: ["Rojo", "Verde", "Amarillo", "Azul"],
-        correct: 2,
-        explanation: "El Operario A se identifica con el color amarillo."
-      },
-      {
-        question: "¿Qué color identifica al Operario B?",
-        options: ["Rojo", "Verde", "Amarillo", "Azul"],
+        question: "¿Qué secuencia de colores identifica a los operarios A, B y C respectivamente?",
+        options: ["Rojo-Verde-Amarillo", "Amarillo-Verde-Rojo", "Verde-Amarillo-Rojo", "Amarillo-Rojo-Verde"],
         correct: 1,
-        explanation: "El Operario B se identifica con el color verde."
-      },
-      {
-        question: "¿Qué color identifica al Operario C?",
-        options: ["Rojo", "Verde", "Amarillo", "Azul"],
-        correct: 0,
-        explanation: "El Operario C se identifica con el color rojo."
+        explanation: "El Operario A = amarillo, Operario B = verde, Operario C = rojo."
       },
       {
         question: "¿Quién indica la distribución inicial de funciones y el sistema de rotación?",
@@ -1830,16 +1818,16 @@ const TOPICS = [
         explanation: "El motor auxiliar del sistema de baja presión se encuentra en la caja trasera insonorizada del vehículo."
       },
       {
-        question: "¿Qué formación debe haber superado el operario/a para trabajar con baldeo con vehículo auxiliar?",
-        options: ["Solo un curso de PRL genérico", "Un curso formativo sobre correcto funcionamiento, mantenimiento del motor auxiliar y PRL específicos del trabajo con agua a presión", "Un curso de conducción de vehículos especiales", "Una formación en primeros auxilios"],
+        question: "¿Qué se debe hacer en el sistema de alta presión ('minihidro') durante la Fase 3?",
+        options: ["Encender el motor auxiliar y dar paso al agua", "Conectar la manguera a la toma de carga y al depósito y proceder al llenado del tanque", "Señalizar el perímetro con conos", "Extender las mangueras traseras de entrada de agua y baldeo"],
         correct: 1,
-        explanation: "El operario/a debe haber superado un curso formativo sobre correcto funcionamiento, mantenimiento del motor auxiliar y PRL específicos del trabajo con agua a presión."
+        explanation: "ALTA PRESIÓN: Conectar la manguera a la toma de carga y al depósito y proceder al llenado del tanque."
       },
       {
-        question: "¿Qué tipo de PRL específica debe incluir la formación del operario de baldeo con vehículo auxiliar?",
-        options: ["PRL para trabajo en altura", "PRL específica del trabajo con agua a presión", "PRL para manejo de sustancias tóxicas", "PRL para conducción nocturna"],
-        correct: 1,
-        explanation: "La formación debe incluir PRL específicos del trabajo con agua a presión, además de funcionamiento y mantenimiento del motor auxiliar."
+        question: "¿Qué se debe verificar en el cuadro de mandos del motor auxiliar durante la Fase 3?",
+        options: ["Que los testigos de presión de trabajo, aceite y temperatura NO estén encendidos", "Que el depósito de combustible esté lleno", "Que las luces de seguridad funcionen correctamente", "Que la presión del agua sea suficiente"],
+        correct: 0,
+        explanation: "Se deben verificar que los testigos de presión de trabajo, aceite y temperatura NO estén encendidos. Si alguno lo está, comunicar inmediatamente al mando."
       },
       {
         question: "¿Qué herramienta NO forma parte del equipamiento del vehículo auxiliar para el baldeo?",
@@ -2216,10 +2204,10 @@ const TOPICS = [
         explanation: "Herramientas adicionales si van en vehículo: detergente en polvo."
       },
       {
-        question: "¿Qué herramienta NO se lleva cuando el equipo se desplaza a pie en la Fase 1?",
-        options: ["Chapulina", "Espuerta", "Detergente en polvo", "Tablillas"],
-        correct: 2,
-        explanation: "El detergente en polvo es herramienta adicional solo si van en vehículo. A pie se llevan: escoba, cepillo, chapulina, espuerta, bolsas, tablillas y llave de papeleras."
+        question: "¿Cómo se debe subir o bajar de la cabina del vehículo cisterna en la Fase 1?",
+        options: ["De espaldas, usando los estribos", "Siempre de cara a ella, usando las agarraderas", "De lateral, apoyándose en la puerta", "De cara, usando los pedales como apoyo"],
+        correct: 1,
+        explanation: "Al subir/bajar de la cabina: siempre de cara a ella, usando las agarraderas."
       },
       {
         question: "En la Fase 2, ¿qué tareas realiza el operario que va en primer lugar?",
