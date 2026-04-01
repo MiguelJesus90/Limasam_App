@@ -569,7 +569,7 @@ const TOPICS = [
       },
       {
         question: "¿Cómo se debe dejar el vehículo durante el barrido para señalización?",
-        options: ["Apagado y alejado de la zona", "Con las luces de emergencia", "Con los intermitentes conectados", "Con las luces largas"],
+        options: ["Apagado y alejado de la zona de trabajo", "Con las luces largas encendidas", "Con los intermitentes conectados", "Con el motor en marcha y freno de mano"],
         correct: 2,
         explanation: "Dejar el vehículo con los intermitentes conectados como señalización y protección del operario."
       },
