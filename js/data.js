@@ -3908,6 +3908,17 @@ const TOPICS = [
 function generatePhaseQuestions() {
   const questions = [];
 
+  // Primero, identificar fases únicas (nombre solo aparece en un tema)
+  const phaseNameToTopics = {};
+  TOPICS.forEach(topic => {
+    topic.phases.forEach(phase => {
+      const cleanName = phase.title.replace(/^Fase \d+[A-Z]? — /, '');
+      if (!phaseNameToTopics[cleanName]) phaseNameToTopics[cleanName] = [];
+      phaseNameToTopics[cleanName].push(topic.id);
+    });
+  });
+  const uniquePhases = Object.entries(phaseNameToTopics).filter(([, topicIds]) => topicIds.length === 1);
+
   TOPICS.forEach(topic => {
     const numPhases = topic.phases.length;
 
@@ -3951,24 +3962,25 @@ function generatePhaseQuestions() {
         type: 'phase'
       });
     });
+  });
 
-    // Tipo 3: ¿A qué tema pertenece esta fase?
-    topic.phases.forEach(phase => {
-      const cleanTitle = phase.title.replace(/^Fase \d+[A-Z]? — /, '');
-      const otherTopics = TOPICS.filter(t => t.id !== topic.id);
-      const distractorTopics = otherTopics.sort(() => Math.random() - 0.5).slice(0, 3);
-      const options = [topic.title, ...distractorTopics.map(t => t.title)].sort(() => Math.random() - 0.5);
-      const correctIdx = options.indexOf(topic.title);
+  // Tipo 3: ¿A qué tema pertenece esta fase? — SOLO fases únicas
+  uniquePhases.forEach(([cleanName, topicIds]) => {
+    const topicId = topicIds[0];
+    const topic = TOPICS.find(t => t.id === topicId);
+    const otherTopics = TOPICS.filter(t => t.id !== topicId);
+    const distractorTopics = otherTopics.sort(() => Math.random() - 0.5).slice(0, 3);
+    const options = [topic.title, ...distractorTopics.map(t => t.title)].sort(() => Math.random() - 0.5);
+    const correctIdx = options.indexOf(topic.title);
 
-      questions.push({
-        question: `¿A qué tipo de trabajo pertenece la fase "${cleanTitle}"?`,
-        options,
-        correct: correctIdx,
-        explanation: `"${cleanTitle}" es una fase de "${topic.title}".`,
-        topicId: topic.id,
-        topicTitle: topic.title,
-        type: 'phase'
-      });
+    questions.push({
+      question: `¿A qué tipo de trabajo pertenece la fase "${cleanName}"?`,
+      options,
+      correct: correctIdx,
+      explanation: `"${cleanName}" es una fase exclusiva de "${topic.title}".`,
+      topicId: topic.id,
+      topicTitle: topic.title,
+      type: 'phase'
     });
   });
 
