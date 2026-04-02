@@ -54,6 +54,7 @@ class App {
     this.topicContainer = document.getElementById('topicContainer');
     this.quizContainer = document.getElementById('quizContainer');
     this.resultsContainer = document.getElementById('resultsContainer');
+    this.phasesContainer = document.getElementById('phasesContainer');
     this.reviewContainer = document.getElementById('reviewContainer');
     this.modalOverlay = document.getElementById('modalOverlay');
     this.modalContent = document.getElementById('modalContent');
@@ -96,6 +97,14 @@ class App {
       btn.addEventListener('click', () => {
         this.switchView('dashboard');
         this.renderDashboard();
+        this.closeSidebar();
+      });
+    });
+
+    document.querySelectorAll('[data-view="phases"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        this.switchView('phases');
+        this.renderPhases();
         this.closeSidebar();
       });
     });
@@ -147,6 +156,11 @@ class App {
         this.renderDashboard();
       } else if (btn.dataset.action === 'start-review') {
         this.startReviewQuiz();
+      } else if (btn.dataset.action === 'start-phases-quiz') {
+        this.startPhasesQuiz();
+      } else if (btn.dataset.action === 'back-to-phases') {
+        this.switchView('phases');
+        this.renderPhases();
       } else if (btn.dataset.action === 'modal-close') {
         this.closeModal();
       } else if (btn.dataset.action === 'reset-progress') {
@@ -181,6 +195,9 @@ class App {
     } else if (hash === 'review') {
       this.switchView('review');
       this.renderReview();
+    } else if (hash === 'phases') {
+      this.switchView('phases');
+      this.renderPhases();
     }
   }
 
@@ -498,7 +515,7 @@ class App {
 
     this.quizContainer.innerHTML = `
       <div class="quiz-header">
-        <h2>${question.topicId === 'global' ? 'Cuestionario Global' : question.topicId === 'review' ? 'Repaso de Errores' : `Tema ${TOPICS.find(t => t.id === question.topicId)?.number || ''} — ${TOPICS.find(t => t.id === question.topicId)?.title || ''}`}</h2>
+        <h2>${question.topicId === 'global' ? 'Cuestionario Global' : question.topicId === 'review' ? 'Repaso de Errores' : question.topicId === 'phases' ? 'Quiz de Fases' : `Tema ${TOPICS.find(t => t.id === question.topicId)?.number || ''} — ${TOPICS.find(t => t.id === question.topicId)?.title || ''}`}</h2>
         ${question.topicId === 'global' ? '<div class="quiz-timer"><span id="quizTimer">45:00</span></div>' : ''}
         <div class="quiz-progress">
           <div class="quiz-progress-bar">
@@ -576,7 +593,7 @@ class App {
     const results = quizEngine.getResults();
     const topicId = results.topicId;
 
-    if (topicId && topicId !== 'global' && topicId !== 'review') {
+    if (topicId && topicId !== 'global' && topicId !== 'review' && topicId !== 'phases') {
       statsManager.recordResult(topicId, results);
       this.updateGlobalProgress();
       this.renderSidebar();
@@ -615,7 +632,10 @@ class App {
 
       <div class="results-actions">
         <button class="btn btn-secondary" data-action="back-dashboard">📊 Dashboard</button>
-        ${topicId && topicId !== 'global' && topicId !== 'review'
+        ${topicId === 'phases'
+          ? `<button class="btn btn-outline" data-action="back-to-phases">📋 Volver a Fases</button>`
+          : ''}
+        ${topicId && topicId !== 'global' && topicId !== 'review' && topicId !== 'phases'
           ? `<button class="btn btn-outline" data-action="back-to-topic" data-topic-id="${topicId}">📖 Volver al Tema</button>`
           : ''}
         <button class="btn btn-primary" data-action="retry-quiz" data-topic-id="${topicId}">🔄 Repetir Examen</button>
@@ -626,6 +646,78 @@ class App {
     this.switchView('results');
     quizEngine.reset();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  renderPhases() {
+    const topicColors = [
+      '#2c3e50', '#3498db', '#27ae60', '#e67e22',
+      '#8e44ad', '#e74c3c', '#16a085'
+    ];
+
+    let html = `
+      <div class="phases-header">
+        <h2>📋 Fases de Trabajo</h2>
+        <p>Estudia y memoriza las fases de cada tipo de trabajo</p>
+      </div>
+
+      <div class="phases-tabs">
+        <button class="phases-tab active" data-action="show-phase-table">📖 Tabla Resumen</button>
+        <button class="phases-tab" data-action="start-phases-quiz">📝 Quiz de Fases</button>
+      </div>
+
+      <div class="phases-table-view" id="phasesTableView">
+    `;
+
+    TOPICS.forEach((topic, idx) => {
+      const color = topicColors[idx % topicColors.length];
+      html += `
+        <div class="phase-topic-card" style="border-left-color: ${color}">
+          <div class="phase-topic-header">
+            <span class="phase-topic-number">Tema ${topic.number}</span>
+            <span class="phase-topic-title">${topic.title}</span>
+            <span class="phase-topic-count">${topic.phases.length} fases</span>
+          </div>
+          <div class="phase-list">
+      `;
+
+      topic.phases.forEach(phase => {
+        const phaseNum = phase.title.match(/Fase (\d+[A-Z]?)/)?.[1] || '?';
+        const phaseName = phase.title.replace(/^Fase \d+[A-Z]? — /, '');
+        html += `
+          <div class="phase-row">
+            <span class="phase-number" style="background: ${color}">${phaseNum}</span>
+            <span class="phase-name">${phaseName}</span>
+          </div>
+        `;
+      });
+
+      html += `</div></div>`;
+    });
+
+    html += `
+      </div>
+    `;
+
+    this.phasesContainer.innerHTML = html;
+
+    this.phasesContainer.querySelectorAll('.phases-tab').forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        this.phasesContainer.querySelectorAll('.phases-tab').forEach(t => t.classList.remove('active'));
+        e.target.classList.add('active');
+        if (e.target.dataset.action === 'start-phases-quiz') {
+          this.startPhasesQuiz();
+        }
+      });
+    });
+  }
+
+  startPhasesQuiz() {
+    const shuffled = quizEngine.shuffle([...PHASE_QUESTIONS]);
+    const selected = shuffled.slice(0, 30);
+
+    quizEngine.start(selected, 'phases');
+    this.switchView('quiz');
+    this.renderQuestion();
   }
 
   renderReview() {

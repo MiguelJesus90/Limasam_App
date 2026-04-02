@@ -3900,3 +3900,125 @@ const TOPICS = [
     ]
   }
 ];
+
+/* ===========================
+   PHASE QUESTIONS — Generated from TOPICS data
+   =========================== */
+
+function generatePhaseQuestions() {
+  const questions = [];
+
+  TOPICS.forEach(topic => {
+    const numPhases = topic.phases.length;
+
+    // Tipo 1: ¿Cuántas fases tiene este tema?
+    const wrongCounts = [3, 4, 5, 6, 7].filter(n => n !== numPhases).slice(0, 3);
+    const countOptions = [`${numPhases} fases`, ...wrongCounts.map(n => `${n} fases`)].sort(() => Math.random() - 0.5);
+    const correctCountIdx = countOptions.indexOf(`${numPhases} fases`);
+    questions.push({
+      question: `¿Cuántas fases tiene "${topic.title}"?`,
+      options: countOptions,
+      correct: correctCountIdx,
+      explanation: `"${topic.title}" tiene ${numPhases} fases.`,
+      topicId: topic.id,
+      topicTitle: topic.title,
+      type: 'phase'
+    });
+
+    // Tipo 2: ¿Cómo se llama la Fase N?
+    topic.phases.forEach((phase, idx) => {
+      const phaseNum = phase.title.match(/Fase (\d+[A-Z]?)/)?.[1] || `${idx + 1}`;
+      const otherTitles = topic.phases
+        .filter((_, i) => i !== idx)
+        .map(p => p.title.replace(/^Fase \d+[A-Z]? — /, ''));
+
+      const allOtherPhases = TOPICS.flatMap(t =>
+        t.phases.filter(p => p.title !== phase.title).map(p => p.title.replace(/^Fase \d+[A-Z]? — /, ''))
+      );
+      const distractors = [...new Set(allOtherPhases)].filter(t => !otherTitles.includes(t));
+
+      const shuffledDistractors = distractors.sort(() => Math.random() - 0.5).slice(0, 3);
+      const options = [phase.title.replace(/^Fase \d+[A-Z]? — /, ''), ...shuffledDistractors].sort(() => Math.random() - 0.5);
+      const correctIdx = options.indexOf(phase.title.replace(/^Fase \d+[A-Z]? — /, ''));
+
+      questions.push({
+        question: `¿Cómo se llama la Fase ${phaseNum} de "${topic.title}"?`,
+        options,
+        correct: correctIdx,
+        explanation: `La Fase ${phaseNum} de "${topic.title}" es: "${phase.title.replace(/^Fase \d+[A-Z]? — /, '')}".`,
+        topicId: topic.id,
+        topicTitle: topic.title,
+        type: 'phase'
+      });
+    });
+
+    // Tipo 3: ¿A qué tema pertenece esta fase?
+    topic.phases.forEach(phase => {
+      const cleanTitle = phase.title.replace(/^Fase \d+[A-Z]? — /, '');
+      const otherTopics = TOPICS.filter(t => t.id !== topic.id);
+      const distractorTopics = otherTopics.sort(() => Math.random() - 0.5).slice(0, 3);
+      const options = [topic.title, ...distractorTopics.map(t => t.title)].sort(() => Math.random() - 0.5);
+      const correctIdx = options.indexOf(topic.title);
+
+      questions.push({
+        question: `¿A qué tipo de trabajo pertenece la fase "${cleanTitle}"?`,
+        options,
+        correct: correctIdx,
+        explanation: `"${cleanTitle}" es una fase de "${topic.title}".`,
+        topicId: topic.id,
+        topicTitle: topic.title,
+        type: 'phase'
+      });
+    });
+  });
+
+  // Tipo 4: Orden de fases — ¿qué va antes?
+  TOPICS.forEach(topic => {
+    for (let i = 0; i < topic.phases.length - 1; i++) {
+      const phaseA = topic.phases[i];
+      const phaseB = topic.phases[i + 1];
+      const titleA = phaseA.title.replace(/^Fase \d+[A-Z]? — /, '');
+      const titleB = phaseB.title.replace(/^Fase \d+[A-Z]? — /, '');
+
+      questions.push({
+        question: `En "${topic.title}", ¿qué fase va primero?`,
+        options: [titleA, titleB],
+        correct: 0,
+        explanation: `En "${topic.title}", "${titleA}" va antes que "${titleB}".`,
+        topicId: topic.id,
+        topicTitle: topic.title,
+        type: 'phase'
+      });
+    }
+  });
+
+  // Tipo 5: ¿Qué se hace en la Fase N? (basado en el primer item)
+  TOPICS.forEach(topic => {
+    topic.phases.forEach((phase, idx) => {
+      if (phase.items.length > 0) {
+        const phaseNum = phase.title.match(/Fase (\d+[A-Z]?)/)?.[1] || `${idx + 1}`;
+        const firstItem = phase.items[0];
+        const otherItems = TOPICS.flatMap(t =>
+          t.phases.flatMap(p => p.items).filter(item => item !== firstItem)
+        );
+        const distractors = [...new Set(otherItems)].sort(() => Math.random() - 0.5).slice(0, 3);
+        const options = [firstItem, ...distractors].sort(() => Math.random() - 0.5);
+        const correctIdx = options.indexOf(firstItem);
+
+        questions.push({
+          question: `¿Qué se hace en la Fase ${phaseNum} de "${topic.title}"?`,
+          options,
+          correct: correctIdx,
+          explanation: `En la Fase ${phaseNum} de "${topic.title}": ${firstItem}`,
+          topicId: topic.id,
+          topicTitle: topic.title,
+          type: 'phase'
+        });
+      }
+    });
+  });
+
+  return questions;
+}
+
+const PHASE_QUESTIONS = generatePhaseQuestions();
